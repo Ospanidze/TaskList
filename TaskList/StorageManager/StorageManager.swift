@@ -71,6 +71,4 @@ class StorageManager {
         task.title = newTask
         saveContext()
     }
-    
-   
 }

@@ -9,6 +9,8 @@ import UIKit
 
 final class TaskListViewController: UITableViewController {
     
+    //MARK: Private Properties
+    
     private let storageManager = StorageManager.shared
     private let cellID = "cellID"
     private var taskList: [Task] = []
@@ -21,7 +23,8 @@ final class TaskListViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
     }
     
-  
+    // MARK: Private Methods
+    
     private func fetchData() {
         storageManager.fetchData { [weak self] result in
             switch result {
