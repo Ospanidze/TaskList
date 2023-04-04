@@ -23,7 +23,7 @@ extension UIViewController {
         alert.addAction(cancelAction)
         alert.addTextField { textField in
             if nameTask == "" {
-                textField.placeholder = "nameTask"
+                textField.placeholder = "Name Task"
             } else {
                 textField.text = nameTask
             }
