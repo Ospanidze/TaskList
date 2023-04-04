@@ -9,7 +9,7 @@ import UIKit
 
 extension UIViewController {
     
-    func showAlert(withTitle title: String, andMessage message: String, completion: @escaping(String) -> Void) {
+    func showAlert(withTitle title: String, andMessage message: String, nameTask: String = "", completion: @escaping(String) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save Task", style: .default) { _ in
             guard let task = alert.textFields?.first?.text, !task.isEmpty else {
@@ -22,7 +22,11 @@ extension UIViewController {
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         alert.addTextField { textField in
-            textField.placeholder = "New Task"
+            if nameTask == "" {
+                textField.placeholder = "nameTask"
+            } else {
+                textField.text = nameTask
+            }
         }
         
         present(alert, animated: true)

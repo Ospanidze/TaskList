@@ -6,43 +6,87 @@
 //
 
 import UIKit
-import CoreData
 
-class TaskListViewController: UITableViewController {
+final class TaskListViewController: UITableViewController {
     
-    private let viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
-    
-    private var taskList: [Task] = []
+    private let storageManager = StorageManager.shared
     private let cellID = "cellID"
-
+    private var taskList: [Task] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        //tableView.rowHeight = 60
         setupNavigationBar()
-        
+        fetchData()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
     }
+    
+  
+    private func fetchData() {
+        storageManager.fetchData { [weak self] result in
+            switch result {
+            case .success(let task):
+                self?.taskList = task
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func addNewTask() {
+        showAlert(withTitle: "New Task", andMessage: "What do you want to do?") { [unowned self] taskName in
+            saveTask(taskName)
+        }
+    }
+    
+    private func saveTask(_ taskName: String) {
+        let indexPath = IndexPath(row: taskList.count - 1, section: 0)
+        storageManager.save(taskName) { [weak self] task in
+            self?.taskList.append(task)
+            self?.tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
+}
 
+// MARK: UITableViewDataSource
+
+extension TaskListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         taskList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        
         let task = taskList[indexPath.row]
         var content = cell.defaultContentConfiguration()
         content.text = task.title
         cell.contentConfiguration = content
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let task = taskList[indexPath.row]
+        
+        if editingStyle == .delete {
+            taskList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            storageManager.delete(task: task)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let task = taskList[indexPath.row]
+        
+        showAlert(withTitle: "Update Task", andMessage: "What do you want to do", nameTask: task.title ?? "") { [weak self] newTask in
+            self?.storageManager.edit(task: task, newTask: newTask)
+            self?.tableView.reloadData()
+        }
+    }
 }
 
-// MARK: Private Methods
+// MARK: Setup NavigationBar
 
 extension TaskListViewController {
     private func setupNavigationBar() {
@@ -66,42 +110,4 @@ extension TaskListViewController {
         
         navigationController?.navigationBar.tintColor = .white
     }
-    
-    private func addNewTask() {
-//        let taskVC = TaskViewController()
-//        //taskVC.modalPresentationStyle = .fullScreen
-//        present(taskVC, animated: true)
-        
-        
-        showAlert(withTitle: "New Task", andMessage: "What do you want to do?") { [unowned self] taskName in
-            saveTask(taskName)
-        }
-    }
-    
-    private func saveTask(_ taskName: String) {
-        let task = Task(context: viewContext)
-        task.title = taskName
-        taskList.append(task)
-        
-        let indexPath = IndexPath(row: taskList.count - 1, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-        
-        if viewContext.hasChanges {
-            do {
-                try viewContext.save()
-            } catch (let error) {
-                print(error)
-            }
-        }
-    }
-    
-//    private func fetchData() {
-//        let fetchRequest = Task.fetchRequest()
-//
-//        do {
-//            taskList = try viewContext.fetch(fetchRequest)
-//        } catch {
-//            print(error)
-//        }
-//    }
 }

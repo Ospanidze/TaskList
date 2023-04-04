@@ -13,11 +13,10 @@
 		EF7E118529DB64C900BB9E91 /* TaskList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF7E118329DB64C900BB9E91 /* TaskList.xcdatamodeld */; };
 		EF7E118729DB64C900BB9E91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF7E118629DB64C900BB9E91 /* Assets.xcassets */; };
 		EF7E118A29DB64C900BB9E91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF7E118829DB64C900BB9E91 /* LaunchScreen.storyboard */; };
-		EF7E119729DB677600BB9E91 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7E119629DB677600BB9E91 /* TaskTableViewCell.swift */; };
-		EF7E119929DB739900BB9E91 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7E119829DB739900BB9E91 /* TaskViewController.swift */; };
 		EF7E119C29DB7A0300BB9E91 /* UIButton + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7E119B29DB7A0300BB9E91 /* UIButton + ext.swift */; };
 		EF7E119E29DB7B4400BB9E91 /* UIStackView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7E119D29DB7B4400BB9E91 /* UIStackView + ext.swift */; };
 		EF7E11A029DC82F300BB9E91 /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7E119F29DC82F300BB9E91 /* ShowAlert.swift */; };
+		EFC3138B29DCA65800DB0DA7 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC3138A29DCA65800DB0DA7 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,11 +28,10 @@
 		EF7E118629DB64C900BB9E91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF7E118929DB64C900BB9E91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF7E118B29DB64C900BB9E91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF7E119629DB677600BB9E91 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
-		EF7E119829DB739900BB9E91 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		EF7E119B29DB7A0300BB9E91 /* UIButton + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + ext.swift"; sourceTree = "<group>"; };
 		EF7E119D29DB7B4400BB9E91 /* UIStackView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + ext.swift"; sourceTree = "<group>"; };
 		EF7E119F29DC82F300BB9E91 /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
+		EFC3138A29DCA65800DB0DA7 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				EF7E119129DB66C600BB9E91 /* App */,
-				EF7E119429DB673200BB9E91 /* Views */,
+				EFC3138929DCA60700DB0DA7 /* StorageManager */,
 				EF7E119229DB66E000BB9E91 /* ViewControllers */,
 				EF7E119A29DB79EC00BB9E91 /* Extansion */,
 				EF7E119329DB66F100BB9E91 /* SupportingFiles */,
@@ -89,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				EF7E117E29DB64C900BB9E91 /* TaskListViewController.swift */,
-				EF7E119829DB739900BB9E91 /* TaskViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -104,22 +101,6 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		EF7E119429DB673200BB9E91 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				EF7E119529DB674A00BB9E91 /* Cells */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		EF7E119529DB674A00BB9E91 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				EF7E119629DB677600BB9E91 /* TaskTableViewCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		EF7E119A29DB79EC00BB9E91 /* Extansion */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +109,14 @@
 				EF7E119F29DC82F300BB9E91 /* ShowAlert.swift */,
 			);
 			path = Extansion;
+			sourceTree = "<group>";
+		};
+		EFC3138929DCA60700DB0DA7 /* StorageManager */ = {
+			isa = PBXGroup;
+			children = (
+				EFC3138A29DCA65800DB0DA7 /* StorageManager.swift */,
+			);
+			path = StorageManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,8 +196,7 @@
 				EF7E11A029DC82F300BB9E91 /* ShowAlert.swift in Sources */,
 				EF7E117D29DB64C900BB9E91 /* SceneDelegate.swift in Sources */,
 				EF7E119E29DB7B4400BB9E91 /* UIStackView + ext.swift in Sources */,
-				EF7E119729DB677600BB9E91 /* TaskTableViewCell.swift in Sources */,
-				EF7E119929DB739900BB9E91 /* TaskViewController.swift in Sources */,
+				EFC3138B29DCA65800DB0DA7 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
