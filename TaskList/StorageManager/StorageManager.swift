@@ -12,10 +12,6 @@ class StorageManager {
     
     private var viewContext: NSManagedObjectContext
     
-    private init() {
-        viewContext = persistentContainer.viewContext
-    }
-    
     // MARK: Core Data stack
 
     private var persistentContainer: NSPersistentContainer = {
@@ -28,6 +24,10 @@ class StorageManager {
         })
         return container
     }()
+    
+    private init() {
+        viewContext = persistentContainer.viewContext
+    }
     
     // MARK: Core Data Saving support
 

@@ -43,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF6218EA29DD8D0A00861964 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EF7E118329DB64C900BB9E91 /* TaskList.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EF7E116E29DB64C900BB9E91 = {
 			isa = PBXGroup;
 			children = (
@@ -63,11 +71,11 @@
 			isa = PBXGroup;
 			children = (
 				EF7E119129DB66C600BB9E91 /* App */,
+				EF6218EA29DD8D0A00861964 /* Models */,
 				EFC3138929DCA60700DB0DA7 /* StorageManager */,
 				EF7E119229DB66E000BB9E91 /* ViewControllers */,
 				EF7E119A29DB79EC00BB9E91 /* Extansion */,
 				EF7E119329DB66F100BB9E91 /* SupportingFiles */,
-				EF7E118329DB64C900BB9E91 /* TaskList.xcdatamodeld */,
 			);
 			path = TaskList;
 			sourceTree = "<group>";

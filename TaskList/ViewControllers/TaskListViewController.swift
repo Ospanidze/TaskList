@@ -43,10 +43,13 @@ final class TaskListViewController: UITableViewController {
     }
     
     private func saveTask(_ taskName: String) {
-        let indexPath = IndexPath(row: taskList.count - 1, section: 0)
-        storageManager.save(taskName) { [weak self] task in
-            self?.taskList.append(task)
-            self?.tableView.insertRows(at: [indexPath], with: .automatic)
+        let indexPath = IndexPath(row: taskList.count, section: 0)
+        storageManager.save(taskName) { [unowned self] task in
+            taskList.append(task)
+            tableView.insertRows(
+                at: [indexPath],
+                with: .automatic
+            )
         }
     }
 }

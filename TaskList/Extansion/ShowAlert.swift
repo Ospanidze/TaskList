@@ -22,9 +22,8 @@ extension UIViewController {
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         alert.addTextField { textField in
-            if nameTask == "" {
-                textField.placeholder = "Name Task"
-            } else {
+            textField.placeholder = "Name Task"
+            if nameTask != "" {
                 textField.text = nameTask
             }
         }
